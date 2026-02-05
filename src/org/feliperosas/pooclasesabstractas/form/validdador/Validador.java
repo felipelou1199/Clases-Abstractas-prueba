@@ -1,0 +1,9 @@
+package org.feliperosas.pooclasesabstractas.form.validdador;
+
+abstract public class Validador {
+
+    protected String mensaje;
+    abstract public void setMensaje(String mensaje);
+    abstract public String getMensaje();
+    abstract public boolean esValido(String valor);
+}

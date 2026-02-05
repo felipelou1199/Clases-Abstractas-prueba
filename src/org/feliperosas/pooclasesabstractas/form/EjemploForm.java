@@ -1,9 +1,6 @@
 package org.feliperosas.pooclasesabstractas.form;
 
-import org.feliperosas.pooclasesabstractas.form.elementos.ElementoForm;
-import org.feliperosas.pooclasesabstractas.form.elementos.InputForm;
-import org.feliperosas.pooclasesabstractas.form.elementos.SelectForms;
-import org.feliperosas.pooclasesabstractas.form.elementos.TextAreaForm;
+import org.feliperosas.pooclasesabstractas.form.elementos.*;
 import org.feliperosas.pooclasesabstractas.form.elementos.select.Opcion;
 
 import java.util.ArrayList;
@@ -22,23 +19,32 @@ public class EjemploForm {
         SelectForms lenguaje = new SelectForms("lenguaje");
         Opcion java =new Opcion("1","Java");
         lenguaje.addOpcion(java)
-        .addOpcion(new Opcion("2","JavaScript"))
+        .addOpcion(new Opcion("2","JavaScript").setSelected(true))
         .addOpcion(new Opcion("3","Php"))
         .addOpcion(new Opcion("4","TypeScript"));
 
+        ElementoForm saludar = new ElementoForm("saludo") {
+            @Override
+            public String dibujarHtml() {
+                return "<input disabled name='"+this.nombre+" value'"+this.valor+"'>";
+            }
+        };
+
+        saludar.setValor("Esto esta desahabilitado");
         username.setValor("Beth Robles");
         password.setValor("popotes");
         email.setValor("bethRobles@correo.com");
         edad.setValor("26");
         experiencia.setValor("toda la experiencia del mundo");
-        java.setSelected(true);
+        //java.setSelected(true);
 
-        List<ElementoForm> elemntos = new Arrays.asList(username,
+        List<ElementoForm> elemntos =  Arrays.asList(username,
                 password,
                 email,
                 edad,
                 experiencia,
-                lenguaje);
+                lenguaje,
+                saludar);
 
         for(ElementoForm e:elemntos){
             System.out.println(e.dibujarHtml());
